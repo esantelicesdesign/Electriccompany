@@ -49,19 +49,15 @@ export function Navbar() {
 
       {/* Main nav */}
       <nav
-        className={`transition-all duration-300 ${
-          scrolled
-            ? "bg-white/95 backdrop-blur-md shadow-md"
-            : "bg-white/90 backdrop-blur-md"
-        }`}
+        className={`transition-all duration-300 ${ scrolled ? "bg-white/95 backdrop-blur-md shadow-md" : "bg-white/90 backdrop-blur-md" } bg-[#ffffffd9]`}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between py-4">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between py-4 mx-[127px] my-[0px]">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img
               src={logoImg}
               alt="Electric Company SpA"
-              className="h-14 w-auto object-contain"
+              className="h-16 w-auto object-contain m-[0px]"
             />
           </Link>
 

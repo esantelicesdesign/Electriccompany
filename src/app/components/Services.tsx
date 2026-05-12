@@ -1,23 +1,31 @@
 import { Link } from "react-router";
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import svgPaths from "../../imports/ServiciosVf/svg-w2e8j0p753";
+import imgIcon1 from "../../imports/ServiciosVf/69bf0fa6de2e46c39421e323140a5857942f374d.png";
+import imgIcon2 from "../../imports/ServiciosVf/7f5bc54ffbb2fdc2a3c4058f601d2d11d50d6fea.png";
+import imgIcon3 from "../../imports/ServiciosVf/dcde8b483ee5aab57993347fcb7c187d7ce3e6e6.png";
+import imgIcon4 from "../../imports/ServiciosVf/5464d5c6b2ec3ed71f251855e37ac4bdf695c269.png";
 
 const services = [
   {
     num: "01",
+    icon: imgIcon1,
     title: "Instalaciones\nIndustriales",
     desc: "Infraestructura eléctrica de alta potencia para plantas mineras y centros de producción.",
-    items: ["Canalización EMT/IMC", "Tendido de conductores", "Mallas a tierra"],
+    items: ["Sistema de alumbrado", "Instalaciones de motores eléctricos", "Inspección y mantención de equipos de media tensión"],
     problem: "DESCONTINUIDAD DE SUMINISTRO",
   },
   {
     num: "02",
+    icon: imgIcon2,
     title: "Mantenimiento\nIndustrial",
     desc: "Desarrollamos proyectos enfocados en el apoyo de actividades de mantenimientos industriales en altas eficiencias.",
-    items: ["Termografía infrarroja", "Análisis de redes", "Pruebas dieléctricas"],
+    items: ["Salas eléctricas", "Motores de baja tensión", "Variadores de frecuencia"],
     problem: "FALLAS CRÍTICAS INESPERADAS",
   },
   {
     num: "03",
+    icon: imgIcon3,
     title: "Montaje e integración\nde tableros",
     desc: "Diseño y ensamblaje de tableros de control, fuerza y distribución bajo norma.",
     items: ["Centros de Control (CCM)", "PLC e Instrumentación", "Tableros TDF"],
@@ -25,12 +33,13 @@ const services = [
   },
   {
     num: "04",
+    icon: imgIcon4,
     title: "Servicios de\ningeniería eléctrica",
     desc: "Desarrollamos servicios de ingeniería en cada instalación.",
     items: [
-      "Levantamiento eléctrico",
-      "Cuentas de carga",
-      "Planos ET / BT",
+      "Proyectos eléctricos",
+      "Cumplimiento normativo",
+      "Optimización energética",
     ],
     problem: "PROYECTOS SIN RESPALDO TÉCNICO",
   },
@@ -75,9 +84,9 @@ export function Services() {
                   {svc.num} / SOL
                 </span>
 
-                {/* Lightning accent */}
-                <div className="w-6 h-6 flex items-center justify-center">
-                  <Zap className="w-5 h-5 text-[#EEA906]" fill="#EEA906" />
+                {/* Icon from Figma */}
+                <div className="w-9 h-10 flex-shrink-0">
+                  <img src={svc.icon} alt="" className="w-full h-full object-contain" />
                 </div>
 
                 {/* Title */}
@@ -99,12 +108,19 @@ export function Services() {
                   {svc.desc}
                 </p>
 
-                {/* Item list */}
+                {/* Item list with checkmark icon */}
                 <ul className="flex flex-col gap-2 flex-1">
                   {svc.items.map((item, j) => (
                     <li key={j} className="flex items-center gap-2 text-xs text-[#1b1c1c]">
-                      <span className="w-1.5 h-1.5 bg-[#EEA906] flex-shrink-0" />
-                      {item}
+                      <svg className="w-5 h-5 flex-shrink-0" fill="none" viewBox="0 0 20 20">
+                        <path d={svgPaths.p7b061c0} fill="#EEA906" />
+                      </svg>
+                      <span
+                        className="uppercase tracking-widest"
+                        style={{ fontFamily: "'Roboto', sans-serif", fontWeight: 700 }}
+                      >
+                        {item}
+                      </span>
                     </li>
                   ))}
                 </ul>

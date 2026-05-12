@@ -56,7 +56,7 @@ export function Hero() {
         />
         {/* Gradient overlay */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 p-[0px]"
           style={{
             background:
               "linear-gradient(144deg, #041627 0%, rgba(4,22,39,0.85) 50%, rgba(4,22,39,0.3) 100%)",
