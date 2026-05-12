@@ -154,7 +154,7 @@ function Container() {
   return (
     <div className="max-w-[1280px] relative shrink-0 w-full" data-name="Container">
       <div className="flex flex-col items-center max-w-[inherit] size-full">
-        <div className="content-stretch flex flex-col gap-[64px] items-center max-w-[inherit] px-[40px] relative size-full">
+        <div className="content-stretch flex flex-col gap-[64px] items-center max-w-[inherit] relative size-full p-[0px]">
           <Container1 />
           <Container2 />
           <Button />

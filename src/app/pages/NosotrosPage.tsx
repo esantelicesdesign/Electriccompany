@@ -930,7 +930,6 @@ export function NosotrosPage() {
       <EstadisticasSection />
       <MisionVisionSection />
       <ExperienceSection />
-      <ProyectosDestacados />
       <CtaBanner />
     </>
   );

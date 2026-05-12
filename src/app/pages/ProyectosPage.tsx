@@ -184,7 +184,7 @@ function ProjectCard({ num, title, tag, desc, imgUrl }: ProjectCardProps) {
           className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-[#041627]/40 group-hover:bg-[#041627]/25 transition-colors duration-300" />
+        <div className="absolute inset-0 bg-[#041627]/40 group-hover:bg-[#041627]/25 transition-colors duration-3 p-[0px]00" />
 
         {/* Number badge */}
         <div className="absolute top-5 left-5 bg-[#EEA906] text-white px-3.5 py-1.5 shadow-lg">

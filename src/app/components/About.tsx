@@ -49,8 +49,8 @@ export function About() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left */}
+        <div className="max-w-4xl mx-auto">
+          {/* Content */}
           <div className="flex flex-col gap-6">
             <div>
               <span className="text-[#EEA906] text-xs tracking-[3px] uppercase font-bold block mb-2">
@@ -108,35 +108,6 @@ export function About() {
                 Trabaja con nosotros
               </Link>
             </div>
-          </div>
-
-          {/* Right: Stats */}
-          <div className="hidden lg:grid grid-cols-2 gap-4">
-            {[
-              { num: "+10", label: "Años de experiencia" },
-              { num: "+80", label: "Proyectos ejecutados" },
-              { num: "100%", label: "Cumplimiento normativo" },
-              { num: "24/7", label: "Soporte de emergencia" },
-            ].map((stat, i) => (
-              <div
-                key={i}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 flex flex-col gap-2 hover:bg-white/10 transition-colors duration-300"
-              >
-                <span
-                  className="text-[#EEA906]"
-                  style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
-                    fontSize: "2.8rem",
-                    fontWeight: 800,
-                    lineHeight: 1,
-                    letterSpacing: "-2px",
-                  }}
-                >
-                  {stat.num}
-                </span>
-                <span className="text-white/70 text-sm">{stat.label}</span>
-              </div>
-            ))}
           </div>
         </div>
       </div>

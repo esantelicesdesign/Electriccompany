@@ -23,14 +23,12 @@ export function Navbar() {
   const isHomePage = location.pathname === "/";
   const isNosotrosPage = location.pathname === "/nosotros";
   const isProyectosPage = location.pathname === "/proyectos";
-  const isContactoPage = location.pathname === "/contacto";
 
   const navLinks: { label: string; to?: string; href?: string; isRoute?: boolean }[] = [
     { label: "Inicio", to: "/", isRoute: true },
     { label: "Nosotros", to: "/nosotros", isRoute: true },
     { label: "Servicios", to: "/servicios", isRoute: true },
     { label: "Proyectos", to: "/proyectos", isRoute: true },
-    { label: "Contacto", to: "/contacto", isRoute: true },
   ];
 
   return (
@@ -70,7 +68,6 @@ export function Navbar() {
                 (link.label === "Servicios" && isServicesPage) ||
                 (link.label === "Nosotros" && isNosotrosPage) ||
                 (link.label === "Proyectos" && isProyectosPage) ||
-                (link.label === "Contacto" && isContactoPage) ||
                 (link.label === "Inicio" && isHomePage && link.to === "/");
 
               if (link.isRoute && link.to) {
