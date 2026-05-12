@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { WhatsAppFloatingButton } from "./components/WhatsAppFloatingButton";
 
 export function Root() {
   return (
@@ -8,6 +9,7 @@ export function Root() {
       <Navbar />
       <Outlet />
       <Footer />
+      <WhatsAppFloatingButton />
     </div>
   );
 }

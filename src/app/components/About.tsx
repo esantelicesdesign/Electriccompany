@@ -1,4 +1,5 @@
 import { Shield, Star, Zap, Clock } from "lucide-react";
+import { Link } from "react-router";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const aboutImg =
@@ -99,13 +100,13 @@ export function About() {
             </div>
 
             <div className="pt-2">
-              <a
-                href="#contacto"
+              <Link
+                to="/contacto"
                 className="inline-flex items-center gap-2 bg-[#EEA906] text-white px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-[#d4960a] transition-colors duration-200"
               >
                 <Zap className="w-4 h-4" fill="white" />
                 Trabaja con nosotros
-              </a>
+              </Link>
             </div>
           </div>
 

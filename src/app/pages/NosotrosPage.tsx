@@ -109,7 +109,7 @@ function NosotrosHero() {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-4 pt-2">
-            <YellowButton href="#contacto">Solicitar cotización</YellowButton>
+            <YellowButton to="/contacto">Solicitar cotización</YellowButton>
             <a
               href="https://wa.me/56933836531"
               target="_blank"
@@ -239,7 +239,7 @@ function QuienesSomosSection() {
             </div>
 
             <div className="pt-2">
-              <YellowButton href="#contacto">Contáctanos</YellowButton>
+              <YellowButton to="/contacto">Contáctanos</YellowButton>
             </div>
           </div>
         </div>

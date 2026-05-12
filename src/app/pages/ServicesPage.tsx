@@ -12,9 +12,19 @@ import imgImage13 from "figma:asset/5464d5c6b2ec3ed71f251855e37ac4bdf695c269.png
 import imgEngineering from "figma:asset/482a34fb4d7740d9a8225750fe380a725eec645d.png";
 
 // Lightning bolt CTA button matching the Figma style
-function YellowButton({ children, href }: { children: React.ReactNode; href?: string }) {
+function YellowButton({ children, href, to }: { children: React.ReactNode; href?: string; to?: string }) {
   const cls =
     "inline-flex items-center gap-3 bg-[#EEA906] text-white px-6 py-2.5 text-sm tracking-widest uppercase font-medium shadow-[0px_1px_8px_rgba(238,194,9,0.9)] hover:bg-[#d4960a] transition-colors duration-200 cursor-pointer";
+
+  if (to)
+    return (
+      <Link to={to} className={cls}>
+        <svg className="w-4 h-5 flex-shrink-0" fill="none" viewBox="0 0 20 25">
+          <path d={svgPaths.p17359280} fill="white" />
+        </svg>
+        {children}
+      </Link>
+    );
 
   if (href)
     return (
@@ -122,7 +132,7 @@ function ServicesHero() {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-4 pt-2">
-            <YellowButton href="#contacto">Solicitar cotización</YellowButton>
+            <YellowButton to="/contacto">Solicitar cotización</YellowButton>
             <a
               href="https://wa.me/56933836531"
               target="_blank"
@@ -195,7 +205,7 @@ function InstallationsSection() {
             </div>
 
             <div className="pt-2">
-              <YellowButton href="#contacto">Ver más</YellowButton>
+              <YellowButton to="/contacto">Ver más</YellowButton>
             </div>
           </div>
 
@@ -285,7 +295,7 @@ function MaintenanceSection() {
             </div>
 
             <div className="pt-2">
-              <YellowButton href="#contacto">Ver más</YellowButton>
+              <YellowButton to="/contacto">Ver más</YellowButton>
             </div>
           </div>
         </div>
@@ -419,7 +429,7 @@ function TablerosSection() {
 
         {/* CTA */}
         <div className="mt-14 flex justify-center">
-          <YellowButton href="#contacto">Ver más</YellowButton>
+          <YellowButton to="/contacto">Ver más</YellowButton>
         </div>
       </div>
     </section>
@@ -524,7 +534,7 @@ function EngineeringSection() {
             </div>
 
             <div className="pt-2">
-              <YellowButton href="#contacto">Ver más</YellowButton>
+              <YellowButton to="/contacto">Ver más</YellowButton>
             </div>
           </div>
 

@@ -1,4 +1,5 @@
 import { Zap, ChevronDown } from "lucide-react";
+import { Link } from "react-router";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const heroImg =
@@ -133,12 +134,12 @@ export function Hero() {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 pt-2">
-              <a
-                href="#contacto"
+              <Link
+                to="/contacto"
                 className="bg-[#EEA906] text-white px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-[#d4960a] transition-colors duration-200 shadow-[0_2px_12px_rgba(238,169,6,0.5)]"
               >
                 Solicitar Cotización
-              </a>
+              </Link>
               <a
                 href="https://wa.me/56933836531"
                 target="_blank"

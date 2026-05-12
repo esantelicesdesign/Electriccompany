@@ -1,4 +1,5 @@
 import { MapPin, Tag, ArrowRight } from "lucide-react";
+import { Link } from "react-router";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 const projects = [
@@ -118,13 +119,13 @@ export function Projects() {
 
         {/* CTA */}
         <div className="mt-12 flex justify-center">
-          <a
-            href="#contacto"
+          <Link
+            to="/contacto"
             className="flex items-center gap-3 bg-[#EEA906] text-white px-10 py-4 text-sm tracking-widest uppercase font-bold hover:bg-[#d4960a] transition-colors duration-200 shadow-[0_2px_16px_rgba(238,169,6,0.4)]"
           >
             Solicitar Brochure
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -23,13 +23,14 @@ export function Navbar() {
   const isHomePage = location.pathname === "/";
   const isNosotrosPage = location.pathname === "/nosotros";
   const isProyectosPage = location.pathname === "/proyectos";
+  const isContactoPage = location.pathname === "/contacto";
 
   const navLinks: { label: string; to?: string; href?: string; isRoute?: boolean }[] = [
     { label: "Inicio", to: "/", isRoute: true },
     { label: "Nosotros", to: "/nosotros", isRoute: true },
     { label: "Servicios", to: "/servicios", isRoute: true },
     { label: "Proyectos", to: "/proyectos", isRoute: true },
-    { label: "Contacto", href: isServicesPage || isNosotrosPage || isProyectosPage ? "/#contacto" : "#contacto" },
+    { label: "Contacto", to: "/contacto", isRoute: true },
   ];
 
   return (
@@ -69,6 +70,7 @@ export function Navbar() {
                 (link.label === "Servicios" && isServicesPage) ||
                 (link.label === "Nosotros" && isNosotrosPage) ||
                 (link.label === "Proyectos" && isProyectosPage) ||
+                (link.label === "Contacto" && isContactoPage) ||
                 (link.label === "Inicio" && isHomePage && link.to === "/");
 
               if (link.isRoute && link.to) {
@@ -90,28 +92,19 @@ export function Navbar() {
                 );
               }
               return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-[#475569] text-sm tracking-widest uppercase hover:text-[#EEA906] transition-colors duration-200 relative group"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#EEA906] transition-all duration-200 group-hover:w-full" />
-                </a>
+                null
               );
             })}
           </div>
 
           {/* CTA button */}
-          <a
-            href="https://wa.me/56933836531"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/contacto"
             className="hidden lg:flex items-center gap-2 bg-[#EEA906] text-white px-5 py-2.5 text-sm tracking-widest uppercase font-semibold hover:bg-[#d4960a] transition-colors duration-200 shadow-[0_1px_8px_rgba(238,169,6,0.6)]"
           >
             <Zap className="w-4 h-4" fill="white" />
             Contáctanos
-          </a>
+          </Link>
 
           {/* Mobile menu button */}
           <button
@@ -150,15 +143,13 @@ export function Navbar() {
                 </a>
               );
             })}
-            <a
-              href="https://wa.me/56933836531"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/contacto"
               className="flex items-center justify-center gap-2 bg-[#EEA906] text-white px-5 py-3 text-sm tracking-widest uppercase font-semibold mt-2"
             >
               <Zap className="w-4 h-4" fill="white" />
               Contáctanos
-            </a>
+            </Link>
           </div>
         )}
       </nav>

@@ -9,8 +9,8 @@ export function Footer() {
     { label: "Inicio", to: "/" },
     { label: "Nosotros", to: "/nosotros" },
     { label: "Servicios", to: "/servicios" },
-    { label: "Proyectos", href: "#proyectos" },
-    { label: "Contacto", href: "#contacto" },
+    { label: "Proyectos", to: "/proyectos" },
+    { label: "Contacto", to: "/contacto" },
     { label: "WhatsApp", href: "https://wa.me/56933836531" },
   ];
 

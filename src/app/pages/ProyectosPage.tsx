@@ -107,7 +107,7 @@ function ProyectosHero() {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-4 pt-2">
-            <YellowButton href="#contacto">Solicitar cotización</YellowButton>
+            <YellowButton to="/contacto">Solicitar cotización</YellowButton>
             <a
               href="https://wa.me/56933836531"
               target="_blank"
