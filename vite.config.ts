@@ -17,6 +17,9 @@ function figmaAssetResolver() {
 }
 
 export default defineConfig({
+  // GitHub Actions: proyecto publicado como https://<usuario>.github.io/Electriccompany/
+  base: process.env.GITHUB_ACTIONS === "true" ? "/Electriccompany/" : "/",
+
   plugins: [
     figmaAssetResolver(),
     // The React and Tailwind plugins are both required for Make, even if

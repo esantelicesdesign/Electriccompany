@@ -45,11 +45,11 @@ export function Footer() {
               +56 9 3383 6531
             </a>
             <a
-              href="mailto:contacto@electriccompany.cl"
+              href="mailto:contacto@electricompany.cl"
               className="flex items-center gap-2 text-[#8192a7] hover:text-[#EEA906] text-sm transition-colors duration-200"
             >
               <Mail className="w-4 h-4 text-[#EEA906]" />
-              contacto@electriccompany.cl
+              contacto@electricompany.cl
             </a>
             <div className="flex items-center gap-2 text-[#8192a7] text-sm">
               <MapPin className="w-4 h-4 text-[#EEA906]" />

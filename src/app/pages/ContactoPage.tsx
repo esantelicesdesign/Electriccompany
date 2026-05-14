@@ -41,6 +41,8 @@ function ContactoHero() {
   );
 }
 
+const CONTACT_FORM_EMAIL = "contacto@electricompany.cl";
+
 /* ─── CONTACT FORM & INFO ───────────────────────────────────────────── */
 function ContactoMain() {
   const [formData, setFormData] = useState({
@@ -48,13 +50,53 @@ function ContactoMain() {
     empresa: "",
     mensaje: "",
   });
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "error">(
+    "idle",
+  );
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí se puede agregar la lógica de envío del formulario
-    const whatsappMessage = `Hola, soy ${formData.nombre} de ${formData.empresa}. ${formData.mensaje}`;
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-    window.open(`https://wa.me/56933836531?text=${encodedMessage}`, "_blank");
+    setSubmitStatus("sending");
+    setSubmitMessage("");
+
+    try {
+      const res = await fetch(
+        `https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_FORM_EMAIL)}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            _subject: "Solicitud de cotización — formulario web Electric Company",
+            nombre: formData.nombre,
+            empresa: formData.empresa,
+            mensaje: formData.mensaje,
+            _template: "table",
+            _captcha: false,
+          }),
+        },
+      );
+      const data = (await res.json()) as { success?: boolean | string; message?: string };
+      const ok =
+        res.ok &&
+        (data.success === true || data.success === "true" || data.success === "True");
+      if (!ok) {
+        throw new Error(data.message || "No se pudo enviar el formulario.");
+      }
+      setSubmitStatus("success");
+      setSubmitMessage(
+        "Tu mensaje fue enviado. Revisaremos tu solicitud y te contactaremos pronto.",
+      );
+      setFormData({ nombre: "", empresa: "", mensaje: "" });
+    } catch {
+      setSubmitStatus("error");
+      setSubmitMessage(
+        "No pudimos enviar el formulario. Intenta de nuevo o escríbenos por WhatsApp o correo.",
+      );
+    }
   };
 
   const handleChange = (
@@ -72,26 +114,7 @@ function ContactoMain() {
         <div className="grid lg:grid-cols-2 gap-20">
           {/* Left: Contact Info */}
           <div className="flex flex-col gap-10">
-            {/* Location */}
-            <div className="flex gap-4 items-start">
-              <div className="w-5 h-5 flex-shrink-0 mt-1">
-                <MapPin className="w-5 h-5 text-[#EEA906]" />
-              </div>
-              <div className="flex flex-col gap-1">
-                <span
-                  className="text-[#1b1c1c] text-sm tracking-widest uppercase"
-                  style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
-                >
-                  Ubicación
-                </span>
-                <span
-                  className="text-[#5f5e5e] text-sm"
-                  style={{ fontFamily: "'Inter', sans-serif" }}
-                >
-                  Sector Industrial, Antofagasta, Chile.
-                </span>
-              </div>
-            </div>
+
 
             {/* Business Hours */}
             <div className="flex gap-4 items-start">
@@ -168,11 +191,11 @@ function ContactoMain() {
                 <div className="flex items-center gap-3">
                   <span className="w-1.5 h-1.5 bg-[#EEA906] flex-shrink-0" />
                   <a
-                    href="mailto:contacto@electriccompany.cl"
+                    href="mailto:contacto@electricompany.cl"
                     className="text-[#44474c] text-sm hover:text-[#EEA906] transition-colors"
                     style={{ fontFamily: "'Inter', sans-serif" }}
                   >
-                    contacto@electriccompany.cl
+                    contacto@electricompany.cl
                   </a>
                 </div>
               </div>
@@ -251,11 +274,33 @@ function ContactoMain() {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="bg-[#041627] text-white py-4 text-sm tracking-widest uppercase hover:bg-[#0a2942] transition-colors duration-200"
+                disabled={submitStatus === "sending"}
+                className="bg-[#041627] text-white py-4 text-sm tracking-widest uppercase hover:bg-[#0a2942] transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                 style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
               >
-                Enviar solicitud de cotización
+                {submitStatus === "sending" ? "Enviando…" : "Enviar solicitud de cotización"}
               </button>
+              {submitMessage ? (
+                <p
+                  role="status"
+                  className={
+                    submitStatus === "success"
+                      ? "text-sm text-[#166534]"
+                      : "text-sm text-[#b91c1c]"
+                  }
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                >
+                  {submitMessage}
+                </p>
+              ) : null}
+              <p className="text-xs text-[#6b7280]" style={{ fontFamily: "'Inter', sans-serif" }}>
+                Los datos se envían a{" "}
+                <a href={`mailto:${CONTACT_FORM_EMAIL}`} className="text-[#EEA906] hover:underline">
+                  {CONTACT_FORM_EMAIL}
+                </a>
+                . La primera vez puede llegar un correo de activación a esa bandeja; debe
+                confirmarse una sola vez.
+              </p>
             </form>
           </div>
         </div>

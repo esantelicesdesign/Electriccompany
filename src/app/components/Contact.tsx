@@ -63,8 +63,8 @@ export function Contact() {
                 {
                   icon: <Mail className="w-5 h-5 text-[#EEA906]" />,
                   label: "Correo electrónico",
-                  value: "contacto@electriccompany.cl",
-                  href: "mailto:contacto@electriccompany.cl",
+                  value: "contacto@electricompany.cl",
+                  href: "mailto:contacto@electricompany.cl",
                 },
                 {
                   icon: <MapPin className="w-5 h-5 text-[#EEA906]" />,

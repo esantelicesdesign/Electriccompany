@@ -1,0 +1,5 @@
+# https://electricompany.cl — ajusta si usas otro dominio en producción.
+User-agent: *
+Allow: /
+
+Sitemap: https://electricompany.cl/sitemap.xml

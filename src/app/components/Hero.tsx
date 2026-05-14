@@ -1,42 +1,34 @@
-import { Zap, ChevronDown } from "lucide-react";
+import {
+  Award,
+  ChevronDown,
+  Gauge,
+  Headphones,
+  ShieldCheck,
+} from "lucide-react";
 import { Link } from "react-router";
+import heroImg from "../../imports/ServiciosVf/electrical-control-panels-in-modern-industrial-bui-2026-03-16-00-39-38-utc.jpg";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
-const heroImg =
-  "https://images.unsplash.com/photo-1762004793160-76327a519c0b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwZWxlY3RyaWNhbCUyMHBvd2VyJTIwbGluZXMlMjBuaWdodHxlbnwxfHx8fDE3Nzg0NzAzOTB8MA&ixlib=rb-4.1.0&q=80&w=1080";
+const iconClass = "w-5 h-5 shrink-0 text-[#EEA906]";
 
 const valueProps = [
   {
-    icon: <Zap className="w-5 h-5 text-[#EEA906]" fill="#EEA906" />,
+    icon: <ShieldCheck className={iconClass} strokeWidth={2} aria-hidden />,
     title: "Seguridad",
     desc: "Rigor técnico y cumplimiento normativo absoluto en cada conexión.",
   },
   {
-    icon: (
-      <svg className="w-6 h-5" viewBox="0 0 25 20" fill="none">
-        <path
-          d="M12.5 0L25 7.5V12.5L12.5 20L0 12.5V7.5L12.5 0Z"
-          fill="#EEA906"
-        />
-      </svg>
-    ),
+    icon: <Award className={iconClass} strokeWidth={2} aria-hidden />,
     title: "Calidad",
     desc: "Componentes de clase mundial e integración de alta ingeniería.",
   },
   {
-    icon: <Zap className="w-5 h-5 text-[#EEA906]" fill="#EEA906" />,
+    icon: <Gauge className={iconClass} strokeWidth={2} aria-hidden />,
     title: "Eficiencia",
     desc: "Optimización de consumo y reducción drástica de tiempos muertos.",
   },
   {
-    icon: (
-      <svg className="w-6 h-5" viewBox="0 0 25 20" fill="none">
-        <path
-          d="M2 10C2 5.58 5.58 2 10 2h5C19.42 2 23 5.58 23 10s-3.58 8-8 8h-5C5.58 18 2 14.42 2 10Z"
-          fill="#EEA906"
-        />
-      </svg>
-    ),
+    icon: <Headphones className={iconClass} strokeWidth={2} aria-hidden />,
     title: "Rápida Respuesta",
     desc: "Soporte técnico local en Antofagasta con tiempos de respuesta críticos.",
   },
@@ -52,7 +44,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-[#041627]">
         <ImageWithFallback
           src={heroImg}
-          alt="Industrial electrical"
+          alt="Tableros de control eléctrico en instalación industrial"
           className="w-full h-full object-cover opacity-35"
         />
         {/* Gradient overlay */}
@@ -78,7 +70,7 @@ export function Hero() {
           {/* Left: text */}
           <div className="flex flex-col gap-6">
             {/* Badge */}
-            <div className="inline-flex">
+            <div className="inline-flex pt-[25px]">
               <span className="bg-[#EEA906] text-white text-xs tracking-widest uppercase px-3 py-1 font-bold">
                 Inicio
               </span>

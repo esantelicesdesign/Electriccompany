@@ -42,7 +42,7 @@ export function Navbar() {
           +56 9 3383 6531
         </span>
         <span className="text-white text-xs tracking-widest uppercase font-medium hidden md:block">
-          contacto@electriccompany.cl
+          contacto@electricompany.cl
         </span>
       </div>
 

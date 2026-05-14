@@ -613,7 +613,7 @@ function CtaBanner() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
-          <YellowButton href="mailto:contacto@electriccompany.cl">
+          <YellowButton href="mailto:contacto@electricompany.cl">
             Solicitar cotización
           </YellowButton>
           <a

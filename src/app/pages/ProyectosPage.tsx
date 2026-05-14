@@ -1,10 +1,30 @@
+import { useState } from "react";
 import { Link } from "react-router";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ProjectPhotosGalleryModal } from "../components/ProjectPhotosGalleryModal";
+import { ProjectYoutubeVideoModal } from "../components/ProjectYoutubeVideoModal";
 import svgPaths from "../../imports/Html→Body-1/svg-a8l4qlap8i";
 import imgHeroBg from "figma:asset/90b4456baadce727174c32a2d7c26cef0ba16b94.png";
 import imgHeroRight from "figma:asset/0540334252044eaf1b4b7a0b80be236aa268c88b.png";
-import imgProyectoWom from "../../imports/proyecto_wom.png";
-import imgStandExponor from "../../imports/instalacion_stand_exponor_2.jpeg";
+import imgProyectoWom from "../../imports/proyectos/proyecto_wom.png";
+import imgStandExponor from "../../imports/proyectos/instalacion_stand_exponor_2.jpeg";
+import imgStandExponor1 from "../../imports/proyectos/instalacion_stand_exponor_1.jpg";
+import imgBodegaSalfa from "../../imports/proyectos/bodega_salfa (1).jpg";
+import imgBodegaSalfa2 from "../../imports/proyectos/bodega_salfa (2).jpg";
+import imgDomiciliario from "../../imports/proyectos/domiciliario_1.jpg";
+import imgDomiciliario2 from "../../imports/proyectos/Domiciliario_2.jpg";
+import imgEquipoMantenedor from "../../imports/proyectos/equipomantenedor_respaldo_salfa.jpg";
+import imgEquipoMantenedor2 from "../../imports/proyectos/equipomantenedor_respaldo_salfa2.jpg";
+import imgEquipoMantenedor3 from "../../imports/proyectos/equipomantenedor_respaldo_salfa3.jpg";
+import imgEmpalme from "../../imports/proyectos/empalme_electrico.jpg";
+import imgEmpalme2 from "../../imports/proyectos/empalme_electrico2.jpg";
+import imgVariadorSchneider from "../../imports/proyectos/variador_schneider.jpg";
+import imgTransferenciaAuto from "../../imports/proyectos/tablero transferecncia automática.jpg";
+import imgTableroEnergy from "../../imports/proyectos/tablero_electrico_energy.jpg";
+import imgTableroEnergy2 from "../../imports/proyectos/tablero_electrico_energy_2.jpg";
+import imgLindeGas from "../../imports/proyectos/tablero de transferencia_linde gas_2.jpg";
+import imgGeneradorRespaldo from "../../imports/proyectos/instalacion_generador_de_respaldo.jpg";
+import imgGeneradorRespaldo2 from "../../imports/proyectos/instalacion_generador_de_respaldo_2.jpg";
 
 /* ─── HELPERS ──────────────────────────────────────────────────────── */
 
@@ -125,68 +145,30 @@ function ProyectosHero() {
   );
 }
 
-/* ─── 2. STATS BAR ─────────────────────────────────────────────────── */
-function StatsBar() {
-  const stats = [
-    { number: "+80", label: "Proyectos completados" },
-    { number: "+40", label: "Clientes industriales" },
-    { number: "24/7", label: "Soporte técnico" },
-    { number: "100%", label: "Cumplimiento normativo" },
-  ];
-
-  return (
-    <section className="bg-[#e6e6e6] border-y border-[#d1d1d1]">
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-12">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-col gap-2 items-center text-center">
-              <span
-                className="text-[#EEA906]"
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "clamp(2rem, 4vw, 3rem)",
-                  fontWeight: 800,
-                  letterSpacing: "-2px",
-                  lineHeight: 1,
-                }}
-              >
-                {stat.number}
-              </span>
-              <span
-                className="text-[#1b1c1c] text-xs tracking-[2px] uppercase"
-                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
-              >
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── 3. PROJECT CARD ──────────────────────────────────────────────── */
+/* ─── 2. PROJECT CARD ──────────────────────────────────────────────── */
 interface ProjectCardProps {
   num: string;
   title: string;
   tag: string;
   desc: string;
-  imgUrl: string;
+  images: string[];
+  onOpenFotos: () => void;
+  onOpenVideo?: () => void;
 }
 
-function ProjectCard({ num, title, tag, desc, imgUrl }: ProjectCardProps) {
+function ProjectCard({ num, title, tag, desc, images, onOpenFotos, onOpenVideo }: ProjectCardProps) {
+  const coverSrc = images[0] ?? "";
   return (
     <div className="bg-white border border-[#e6e6e6] flex flex-col group hover:border-[#EEA906]/50 transition-all duration-300">
       {/* Image */}
       <div className="relative overflow-hidden h-64">
         <ImageWithFallback
-          src={imgUrl}
+          src={coverSrc}
           alt={title}
           className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-[#041627]/40 group-hover:bg-[#041627]/25 transition-colors duration-3 p-[0px]00" />
+        <div className="absolute inset-0 bg-[#041627]/50 group-hover:bg-[#041627]/35 transition-colors duration-300" />
 
         {/* Number badge */}
         <div className="absolute top-5 left-5 bg-[#EEA906] text-white px-3.5 py-1.5 shadow-lg">
@@ -249,7 +231,12 @@ function ProjectCard({ num, title, tag, desc, imgUrl }: ProjectCardProps) {
         {/* Bottom CTA area */}
         <div className="pt-4 mt-auto border-t border-[#e6e6e6]">
           <div className="flex items-center gap-2">
-            <button className="flex-1 flex items-center justify-center gap-2 bg-[#f6f3f2] hover:bg-[#EEA906] text-[#1b1c1c] hover:text-white py-2.5 text-[0.65rem] tracking-[1.5px] uppercase transition-colors duration-200"
+            <button
+              type="button"
+              onClick={onOpenFotos}
+              className={`flex items-center justify-center gap-2 bg-[#f6f3f2] hover:bg-[#EEA906] text-[#1b1c1c] hover:text-white py-2.5 text-[0.65rem] tracking-[1.5px] uppercase transition-colors duration-200 ${
+                onOpenVideo ? "flex-1" : "w-full"
+              }`}
               style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -257,15 +244,21 @@ function ProjectCard({ num, title, tag, desc, imgUrl }: ProjectCardProps) {
               </svg>
               Fotos
             </button>
-            <button className="flex-1 flex items-center justify-center gap-2 bg-[#f6f3f2] hover:bg-[#EEA906] text-[#1b1c1c] hover:text-white py-2.5 text-[0.65rem] tracking-[1.5px] uppercase transition-colors duration-200"
-              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Video
-            </button>
+            {onOpenVideo ? (
+              <button
+                type="button"
+                onClick={onOpenVideo}
+                title="Ver video del proyecto"
+                className="flex-1 flex items-center justify-center gap-2 bg-[#f6f3f2] hover:bg-[#EEA906] text-[#1b1c1c] hover:text-white py-2.5 text-[0.65rem] tracking-[1.5px] uppercase transition-colors duration-200 cursor-pointer"
+                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Video
+              </button>
+            ) : null}
           </div>
         </div>
       </div>
@@ -273,90 +266,132 @@ function ProjectCard({ num, title, tag, desc, imgUrl }: ProjectCardProps) {
   );
 }
 
-/* ─── 4. PROJECTS GRID ─────────────────────────────────────────────── */
+/* ─── 3. PROJECTS GRID ─────────────────────────────────────────────── */
 function ProyectosGrid() {
-  const projects: ProjectCardProps[] = [
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryTitle, setGalleryTitle] = useState("");
+  const [galleryImages, setGalleryImages] = useState<string[]>([]);
+
+  const [videoOpen, setVideoOpen] = useState(false);
+  const [videoTitle, setVideoTitle] = useState("");
+  const [videoId, setVideoId] = useState<string | null>(null);
+
+  const openGallery = (title: string, images: string[]) => {
+    setGalleryTitle(title);
+    setGalleryImages(images);
+    setGalleryOpen(true);
+  };
+
+  const openYoutube = (title: string, id: string) => {
+    setVideoTitle(title);
+    setVideoId(id);
+    setVideoOpen(true);
+  };
+
+  const handleVideoModalOpenChange = (open: boolean) => {
+    setVideoOpen(open);
+    if (!open) setVideoId(null);
+  };
+
+  const projects: Array<
+    Omit<ProjectCardProps, "onOpenFotos" | "onOpenVideo"> & { youtubeVideoId?: string }
+  > = [
     {
       num: "01",
       title: "Tablero Eléctrico WOM",
       tag: "Automatización Industrial",
       desc: "Desarrollo e integración de tablero eléctrico para operación comercial, enfocado en continuidad operativa, seguridad y correcta distribución energética.",
-      imgUrl: imgProyectoWom,
+      images: [imgProyectoWom],
+      youtubeVideoId: "ri2KyP-5BEg",
     },
     {
       num: "02",
       title: "Stand Exponor",
       tag: "Instalaciones Industriales",
       desc: "Implementación de soluciones eléctricas para espacio expositivo industrial, considerando montaje, distribución y funcionamiento seguro de equipos.",
-      imgUrl: imgStandExponor,
+      images: [imgStandExponor1, imgStandExponor],
     },
     {
       num: "03",
       title: "Renovación Salfa Rent",
       tag: "Iluminación Industrial",
       desc: "Renovación de sistema de iluminación en bodega industrial, optimizando visibilidad, eficiencia energética y operatividad del espacio.",
-      imgUrl: "https://images.unsplash.com/photo-1586864387634-3e3a50b8489b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwd2FyZWhvdXNlJTIwbGlnaHRpbmclMjBsZWR8ZW58MXx8fHwxNzc4NTU3OTA0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      images: [imgBodegaSalfa, imgBodegaSalfa2],
     },
     {
       num: "04",
       title: "Proyecto Residencial",
       tag: "Instalaciones Eléctricas",
       desc: "Ejecución de instalación eléctrica residencial, incorporando soluciones seguras y adaptadas a los requerimientos del cliente.",
-      imgUrl: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXNpZGVudGlhbCUyMGVsZWN0cmljYWwlMjBpbnN0YWxsYXRpb24lMjBob3VzZXxlbnwxfHx8fDE3Nzg1NTc5MDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      images: [imgDomiciliario, imgDomiciliario2],
     },
     {
       num: "05",
       title: "Mantenedor de Batería",
       tag: "Sistemas de Respaldo",
       desc: "Instalación de sistema de respaldo y mantenimiento de baterías para generador eléctrico, mejorando confiabilidad y disponibilidad operativa.",
-      imgUrl: "https://images.unsplash.com/photo-1559028012-481c04fa702d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXR0ZXJ5JTIwYmFja3VwJTIwc3lzdGVtJTIwaW5kdXN0cmlhbCUyMHVwc3xlbnwxfHx8fDE3Nzg1NTc5MDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      images: [imgEquipoMantenedor, imgEquipoMantenedor2, imgEquipoMantenedor3],
     },
     {
       num: "06",
       title: "Empalme Trifásico",
       tag: "Distribución Eléctrica",
       desc: "Desarrollo de empalme trifásico orientado a una distribución eléctrica segura, estable y acorde a estándares técnicos.",
-      imgUrl: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0aHJlZSUyMHBoYXNlJTIwZWxlY3RyaWNhbCUyMGNvbm5lY3Rpb24lMjBpbmR1c3RyaWFsfGVufDF8fHx8MTc3ODU1NzkwNnww&ixlib=rb-4.1.0&q=80&w=1080",
+      images: [imgEmpalme, imgEmpalme2],
     },
     {
       num: "07",
       title: "Tablero Schneider",
       tag: "Control y Fuerza",
       desc: "Configuración e integración de tablero de control con variador de frecuencia Schneider para optimización de procesos eléctricos industriales.",
-      imgUrl: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2huZWlkZXIlMjBlbGVjdHJpYyUyMHBhbmVsJTIwY29udHJvbCUyMGluZHVzdHJpYWx8ZW58MXx8fHwxNzc4NTU3OTA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      images: [imgVariadorSchneider],
     },
     {
       num: "08",
       title: "Transferencia Automática",
       tag: "Continuidad Operacional",
       desc: "Instalación de tablero de transferencia automática para operación industrial, asegurando continuidad energética y respuesta eficiente.",
-      imgUrl: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhdXRvbWF0aWMlMjB0cmFuc2ZlciUyMHN3aXRjaCUyMGVsZWN0cmljYWwlMjBpbmR1c3RyaWFsfGVufDF8fHx8MTc3ODU1NzkwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      images: [imgTransferenciaAuto],
+      youtubeVideoId: "Knj_9ozn8yk",
     },
     {
       num: "09",
       title: "Tablero Energy",
       tag: "Minería e Industria",
       desc: "Desarrollo e integración de tablero de distribución para operación minera, enfocado en seguridad y eficiencia operacional.",
-      imgUrl: "https://images.unsplash.com/photo-1638423086998-beb8b82ce15f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbmclMjBlbGVjdHJpY2FsJTIwcGFuZWwlMjBpbmR1c3RyaWFsJTIwQ2hpbGV8ZW58MXx8fHwxNzc4NTU3OTA4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      images: [imgTableroEnergy, imgTableroEnergy2],
+      youtubeVideoId: "KsnRSXWWYD8",
     },
     {
       num: "10",
       title: "Mantención Linde Gas",
       tag: "Mantenimiento Eléctrico",
       desc: "Cambio de componentes y pruebas funcionales en tablero de transferencia automática para asegurar continuidad y correcto funcionamiento.",
-      imgUrl: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpY2FsJTIwbWFpbnRlbmFuY2UlMjB3b3JrZXIlMjBpbmR1c3RyaWFsJTIwcGFuZWx8ZW58MXx8fHwxNzc4NTU3OTA4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      images: [imgLindeGas],
     },
     {
       num: "11",
       title: "Generador Minero",
       tag: "Energía de Respaldo",
       desc: "Implementación de sistema de generación de respaldo para operación minera, orientado a mantener estabilidad energética y operativa.",
-      imgUrl: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwZ2VuZXJhdG9yJTIwbWluaW5nJTIwZWxlY3RyaWNhbHxlbnwxfHx8fDE3Nzg1NTc5MDl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      images: [imgGeneradorRespaldo, imgGeneradorRespaldo2],
     },
   ];
 
   return (
     <section className="bg-white py-20 px-6 md:px-10">
+      <ProjectPhotosGalleryModal
+        open={galleryOpen}
+        onOpenChange={setGalleryOpen}
+        projectTitle={galleryTitle}
+        images={galleryImages}
+      />
+      <ProjectYoutubeVideoModal
+        open={videoOpen}
+        onOpenChange={handleVideoModalOpenChange}
+        projectTitle={videoTitle}
+        videoId={videoId}
+      />
       <div className="max-w-[1280px] mx-auto">
         {/* Header */}
         <div className="mb-14 flex flex-col gap-4">
@@ -394,8 +429,17 @@ function ProyectosGrid() {
 
         {/* Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <ProjectCard key={project.num} {...project} />
+          {projects.map(({ youtubeVideoId, ...project }) => (
+            <ProjectCard
+              key={project.num}
+              {...project}
+              onOpenFotos={() => openGallery(project.title, project.images)}
+              onOpenVideo={
+                youtubeVideoId
+                  ? () => openYoutube(project.title, youtubeVideoId)
+                  : undefined
+              }
+            />
           ))}
         </div>
       </div>
@@ -403,7 +447,7 @@ function ProyectosGrid() {
   );
 }
 
-/* ─── 5. CAPACIDADES ───────────────────────────────────────────────── */
+/* ─── 4. CAPACIDADES ───────────────────────────────────────────────── */
 function CapacidadesSection() {
   const capabilities = [
     {
@@ -499,7 +543,7 @@ function CapacidadesSection() {
   );
 }
 
-/* ─── 6. CTA SECTION ───────────────────────────────────────────────── */
+/* ─── 5. CTA SECTION ───────────────────────────────────────────────── */
 function CtaSection() {
   return (
     <section
@@ -542,7 +586,7 @@ function CtaSection() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
-          <YellowButton href="mailto:contacto@electriccompany.cl">
+          <YellowButton href="mailto:contacto@electricompany.cl">
             Solicitar cotización
           </YellowButton>
           <a
@@ -564,7 +608,6 @@ export function ProyectosPage() {
   return (
     <>
       <ProyectosHero />
-      <StatsBar />
       <ProyectosGrid />
       <CapacidadesSection />
       <CtaSection />

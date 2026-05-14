@@ -6,7 +6,7 @@ import { NosotrosPage } from "./pages/NosotrosPage";
 import { ProyectosPage } from "./pages/ProyectosPage";
 import { ContactoPage } from "./pages/ContactoPage";
 
-export const router = createBrowserRouter([
+const routes = [
   {
     path: "/",
     Component: Root,
@@ -18,4 +18,17 @@ export const router = createBrowserRouter([
       { path: "contacto", Component: ContactoPage },
     ],
   },
-]);
+];
+
+function routerBasename(): string | undefined {
+  const baseUrl = import.meta.env.BASE_URL;
+  if (!baseUrl || baseUrl === "/") return undefined;
+  return baseUrl.endsWith("/") ? baseUrl.slice(0, -1) : baseUrl;
+}
+
+const basename = routerBasename();
+
+export const router = createBrowserRouter(
+  routes,
+  basename ? { basename } : {},
+);

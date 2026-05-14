@@ -1,8 +1,9 @@
 import { MapPin, Tag, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
-import imgProyectoWom from "../../imports/proyecto_wom.png";
-import imgStandExponor from "../../imports/instalacion_stand_exponor_2.jpeg";
+import imgProyectoWom from "../../imports/proyectos/proyecto_wom.png";
+import imgStandExponor from "../../imports/proyectos/instalacion_stand_exponor_2.jpeg";
+import imgVariadorSchneider from "../../imports/proyectos/variador_schneider.jpg";
 
 const projects = [
   {
@@ -24,7 +25,7 @@ const projects = [
     desc: "Implementación de soluciones eléctricas para espacio expositivo industrial, considerando montaje, distribución y funcionamiento seguro de equipos.",
   },
   {
-    img: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2huZWlkZXIlMjBlbGVjdHJpYyUyMHBhbmVsJTIwY29udHJvbCUyMGluZHVzdHJpYWx8ZW58MXx8fHwxNzc4NTU3OTA3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+    img: imgVariadorSchneider,
     badge: "CONTROL",
     title: "Tablero Schneider",
     subtitle: "Control y Fuerza",
@@ -122,10 +123,10 @@ export function Projects() {
         {/* CTA */}
         <div className="mt-12 flex justify-center">
           <Link
-            to="/contacto"
+            to="/proyectos"
             className="flex items-center gap-3 bg-[#EEA906] text-white px-10 py-4 text-sm tracking-widest uppercase font-bold hover:bg-[#d4960a] transition-colors duration-200 shadow-[0_2px_16px_rgba(238,169,6,0.4)]"
           >
-            Solicitar Brochure
+            Ver más proyectos
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

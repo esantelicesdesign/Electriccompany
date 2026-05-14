@@ -34,7 +34,7 @@ function Frame3() {
   return (
     <div className="content-stretch flex items-center justify-center p-[10px] relative shrink-0">
       <div className="flex flex-col font-['Roboto:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[14px] text-white tracking-[2.24px] uppercase whitespace-nowrap" style={{ fontVariationSettings: "'wdth' 100" }}>
-        <p className="leading-[normal]">CONTACTO@ELECTRIcompany.cl</p>
+        <p className="leading-[normal]">CONTACTO@ELECTRICOMPANY.CL</p>
       </div>
     </div>
   );

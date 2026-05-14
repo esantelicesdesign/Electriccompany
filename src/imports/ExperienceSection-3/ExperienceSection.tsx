@@ -1,6 +1,7 @@
 import svgPaths from "./svg-uz6xjjavrj";
 import imgDescarga1 from "./7ce1318be4f01bc4ad11e9842aec959d4be810c3.png";
 import imgRetrato21 from "./22c433eb49777e05fc4cccab3972d55e6f8b98d2.png";
+import catalogBrochureUrl from "../Catalogo_electric_comp_compressed.pdf";
 
 function Heading() {
   return (
@@ -137,7 +138,12 @@ function Container2() {
 
 function Button() {
   return (
-    <div className="bg-[#eea906] content-stretch drop-shadow-[-1px_0px_5.858px_rgba(255,193,47,0.99)] flex gap-[20px] items-center justify-center pb-[17.5px] pt-[16.5px] px-[40px] relative shrink-0" data-name="Button">
+    <a
+      href={catalogBrochureUrl}
+      download="Catalogo_electric_comp_compressed.pdf"
+      className="bg-[#eea906] content-stretch drop-shadow-[-1px_0px_5.858px_rgba(255,193,47,0.99)] flex gap-[20px] items-center justify-center pb-[17.5px] pt-[16.5px] px-[40px] relative shrink-0 cursor-pointer no-underline transition-[filter,opacity] duration-200 hover:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      data-name="Button"
+    >
       <div className="h-[25px] relative shrink-0 w-[20px]" data-name="Icon">
         <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 25">
           <path d={svgPaths.p17359280} fill="var(--fill-0, white)" id="Icon" />
@@ -146,7 +152,7 @@ function Button() {
       <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[20px] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-center text-white tracking-[1.4px] uppercase w-[194.03px]">
         <p className="leading-[20px]">descargar brochure</p>
       </div>
-    </div>
+    </a>
   );
 }
 
