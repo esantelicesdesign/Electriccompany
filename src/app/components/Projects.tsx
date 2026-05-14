@@ -1,10 +1,12 @@
 import { MapPin, Tag, ArrowRight } from "lucide-react";
 import { Link } from "react-router";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import imgProyectoWom from "../../imports/proyecto_wom.png";
+import imgStandExponor from "../../imports/instalacion_stand_exponor_2.jpeg";
 
 const projects = [
   {
-    img: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpY2FsJTIwcGFuZWwlMjBjb250cm9sJTIwYm9hcmQlMjBpbmR1c3RyaWFsfGVufDF8fHx8MTc3ODU1NzkwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    img: imgProyectoWom,
     badge: "AUTOMATIZACIÓN",
     title: "Tablero Eléctrico WOM",
     subtitle: "Automatización Industrial",
@@ -13,7 +15,7 @@ const projects = [
     desc: "Desarrollo e integración de tablero eléctrico para operación comercial, enfocado en continuidad operativa, seguridad y correcta distribución energética.",
   },
   {
-    img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwZXhoaWJpdGlvbiUyMHN0YW5kJTIwZWxlY3RyaWNhbHxlbnwxfHx8fDE3Nzg1NTc5MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    img: imgStandExponor,
     badge: "INSTALACIONES",
     title: "Stand Exponor",
     subtitle: "Instalaciones Industriales",

@@ -3,6 +3,8 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import svgPaths from "../../imports/Html→Body-1/svg-a8l4qlap8i";
 import imgHeroBg from "figma:asset/90b4456baadce727174c32a2d7c26cef0ba16b94.png";
 import imgHeroRight from "figma:asset/0540334252044eaf1b4b7a0b80be236aa268c88b.png";
+import imgProyectoWom from "../../imports/proyecto_wom.png";
+import imgStandExponor from "../../imports/instalacion_stand_exponor_2.jpeg";
 
 /* ─── HELPERS ──────────────────────────────────────────────────────── */
 
@@ -246,22 +248,24 @@ function ProjectCard({ num, title, tag, desc, imgUrl }: ProjectCardProps) {
 
         {/* Bottom CTA area */}
         <div className="pt-4 mt-auto border-t border-[#e6e6e6]">
-          <div className="flex items-center justify-between">
-            <span
-              className="text-[#1b1c1c] text-[0.65rem] tracking-[2px] uppercase"
+          <div className="flex items-center gap-2">
+            <button className="flex-1 flex items-center justify-center gap-2 bg-[#f6f3f2] hover:bg-[#EEA906] text-[#1b1c1c] hover:text-white py-2.5 text-[0.65rem] tracking-[1.5px] uppercase transition-colors duration-200"
               style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
             >
-              Proyecto completado
-            </span>
-            <svg
-              className="w-5 h-5 text-[#EEA906] group-hover:translate-x-1 transition-transform duration-200"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Fotos
+            </button>
+            <button className="flex-1 flex items-center justify-center gap-2 bg-[#f6f3f2] hover:bg-[#EEA906] text-[#1b1c1c] hover:text-white py-2.5 text-[0.65rem] tracking-[1.5px] uppercase transition-colors duration-200"
+              style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Video
+            </button>
           </div>
         </div>
       </div>
@@ -277,14 +281,14 @@ function ProyectosGrid() {
       title: "Tablero Eléctrico WOM",
       tag: "Automatización Industrial",
       desc: "Desarrollo e integración de tablero eléctrico para operación comercial, enfocado en continuidad operativa, seguridad y correcta distribución energética.",
-      imgUrl: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpY2FsJTIwcGFuZWwlMjBjb250cm9sJTIwYm9hcmQlMjBpbmR1c3RyaWFsfGVufDF8fHx8MTc3ODU1NzkwM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      imgUrl: imgProyectoWom,
     },
     {
       num: "02",
       title: "Stand Exponor",
       tag: "Instalaciones Industriales",
       desc: "Implementación de soluciones eléctricas para espacio expositivo industrial, considerando montaje, distribución y funcionamiento seguro de equipos.",
-      imgUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwZXhoaWJpdGlvbiUyMHN0YW5kJTIwZWxlY3RyaWNhbHxlbnwxfHx8fDE3Nzg1NTc5MDN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      imgUrl: imgStandExponor,
     },
     {
       num: "03",

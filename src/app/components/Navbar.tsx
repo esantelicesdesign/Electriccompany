@@ -56,7 +56,7 @@ export function Navbar() {
             <img
               src={logoImg}
               alt="Electric Company SpA"
-              className="h-16 w-auto object-contain m-[0px]"
+              className="h-18 w-auto object-contain m-[0px]"
             />
           </Link>
 
