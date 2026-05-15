@@ -1,38 +1,70 @@
-import {
-  Award,
-  ChevronDown,
-  Gauge,
-  Headphones,
-  ShieldCheck,
-} from "lucide-react";
+import { ChevronDown, Download } from "lucide-react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { Link } from "react-router";
+import { useRef } from "react";
 import heroImg from "../../imports/ServiciosVf/electrical-control-panels-in-modern-industrial-bui-2026-03-16-00-39-38-utc.jpg";
+import catalogPdf from "../../imports/Catalogo_electric_comp_compressed.pdf";
+import mockupCatalogo from "../../imports/mockup_catalogo.png";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
-const iconClass = "w-5 h-5 shrink-0 text-[#EEA906]";
+function CatalogParallaxBanner({ catalogPdf: pdfUrl }: { catalogPdf: string }) {
+  const bannerRef = useRef<HTMLDivElement>(null);
 
-const valueProps = [
-  {
-    icon: <ShieldCheck className={iconClass} strokeWidth={2} aria-hidden />,
-    title: "Seguridad",
-    desc: "Rigor técnico y cumplimiento normativo absoluto en cada conexión.",
-  },
-  {
-    icon: <Award className={iconClass} strokeWidth={2} aria-hidden />,
-    title: "Calidad",
-    desc: "Componentes de clase mundial e integración de alta ingeniería.",
-  },
-  {
-    icon: <Gauge className={iconClass} strokeWidth={2} aria-hidden />,
-    title: "Eficiencia",
-    desc: "Optimización de consumo y reducción drástica de tiempos muertos.",
-  },
-  {
-    icon: <Headphones className={iconClass} strokeWidth={2} aria-hidden />,
-    title: "Rápida Respuesta",
-    desc: "Soporte técnico local en Antofagasta con tiempos de respuesta críticos.",
-  },
-];
+  const { scrollYProgress } = useScroll({
+    target: bannerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["10%", "-14%"]);
+  const bgScale = useTransform(scrollYProgress, [0, 0.45, 1], [1.12, 1.22, 1.1]);
+  const bgPosY = useTransform(scrollYProgress, [0, 1], [44, 56]);
+  const bgPosition = useTransform(bgPosY, (v) => `50% ${v}%`);
+
+  /** Contenedor del botón: ligero contra-movimiento para sensación de profundidad. */
+  const contentY = useTransform(scrollYProgress, [0, 1], [12, -10]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.2, 0.85, 1], [0.88, 1, 1, 0.92]);
+
+  return (
+    <div
+      ref={bannerRef}
+      className="relative z-10 mt-auto w-full h-[239px] shrink-0 border-t border-white/15 overflow-hidden"
+    >
+      <div className="relative h-full w-full">
+        <motion.div
+          className="absolute left-[-8%] right-[-8%] top-[-35%] bottom-[-35%] bg-cover bg-no-repeat will-change-transform"
+          style={{
+            backgroundImage: `url(${mockupCatalogo})`,
+            backgroundPosition: bgPosition,
+            y: bgY,
+            scale: bgScale,
+          }}
+        />
+
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(105deg, rgba(4,22,39,0.88) 0%, rgba(4,22,39,0.55) 45%, rgba(4,22,39,0.72) 100%)",
+          }}
+        />
+
+        <motion.div
+          className="relative z-[1] h-full flex items-center justify-center px-6 will-change-transform"
+          style={{ y: contentY, opacity: contentOpacity }}
+        >
+          <a
+            href={pdfUrl}
+            download="Catalogo_electric_comp_compressed.pdf"
+            className="group inline-flex items-center gap-3 bg-[#EEA906] text-white px-10 py-4 text-xs sm:text-sm tracking-widest uppercase font-bold shadow-[0_4px_24px_rgba(0,0,0,0.35)] hover:bg-[#fcd800] hover:text-[#041627] hover:shadow-[0_6px_28px_rgba(238,169,6,0.45)] border border-white/20 hover:border-black/10 transition-all duration-200"
+          >
+            <Download className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" strokeWidth={2.5} aria-hidden />
+            Descargar catálogo de servicios
+          </a>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
 
 export function Hero() {
   return (
@@ -143,37 +175,15 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right: Value props */}
+          {/* Right: spacer */}
           <div className="hidden lg:block" />
         </div>
       </div>
 
-      {/* Value Props bottom bar */}
-      <div className="relative z-10 mt-auto">
-        <div className="bg-[#e6e6e6]/95 backdrop-blur-sm border-l border-t border-white/20 max-w-7xl mx-auto lg:ml-auto lg:mr-0 lg:w-1/2">
-          <div className="grid grid-cols-2 gap-px bg-gray-300/30">
-            {valueProps.map((vp, i) => (
-              <div
-                key={i}
-                className="bg-[#ebebeb] px-6 py-5 flex gap-4 items-start"
-              >
-                <div className="flex-shrink-0 mt-0.5">{vp.icon}</div>
-                <div>
-                  <div className="text-[#1b1c1c] text-xs font-bold tracking-widest uppercase mb-1">
-                    {vp.title}
-                  </div>
-                  <div className="text-[#44474c] text-xs leading-relaxed">
-                    {vp.desc}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <CatalogParallaxBanner catalogPdf={catalogPdf} />
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-white/40 animate-bounce hidden md:block">
+      <div className="absolute hidden md:flex bottom-[252px] left-1/2 -translate-x-1/2 z-10 text-white/40 animate-bounce">
         <ChevronDown className="w-6 h-6" />
       </div>
     </section>

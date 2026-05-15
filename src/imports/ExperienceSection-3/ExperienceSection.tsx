@@ -1,179 +1,91 @@
-import svgPaths from "./svg-uz6xjjavrj";
-import imgDescarga1 from "./7ce1318be4f01bc4ad11e9842aec959d4be810c3.png";
-import imgRetrato21 from "./22c433eb49777e05fc4cccab3972d55e6f8b98d2.png";
-import catalogBrochureUrl from "../Catalogo_electric_comp_compressed.pdf";
+import imgEquipo from "../equipo_electrico.png";
 
-function Heading() {
-  return (
-    <div className="content-stretch flex flex-col items-center relative shrink-0" data-name="Heading 2">
-      <div className="flex flex-col font-['Space_Grotesk:Bold',sans-serif] font-bold h-[48px] justify-center leading-[0] relative shrink-0 text-[#1b1c1c] text-[48px] text-center tracking-[-2.4px] w-[506.45px]">
-        <p className="leading-[48px]">Equipo comprometido</p>
-      </div>
-    </div>
-  );
-}
+type TeamCardProps = {
+  name: string;
+  role?: string;
+  specialty: string;
+};
 
-function Heading2Margin() {
+function TeamCard({ name, role, specialty }: TeamCardProps) {
   return (
-    <div className="content-stretch flex flex-col items-start pt-[8px] relative shrink-0" data-name="Heading 2:margin">
-      <Heading />
-    </div>
-  );
-}
-
-function Container1() {
-  return (
-    <div className="content-stretch flex flex-col items-center relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[16px] justify-center leading-[0] not-italic relative shrink-0 text-[#eea906] text-[12px] text-center tracking-[3.6px] uppercase w-[255px]">
-        <p className="leading-[16px]">nosotros</p>
-      </div>
-      <Heading2Margin />
-    </div>
-  );
-}
-
-function Heading1() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[8px] relative shrink-0 w-full" data-name="Heading 4">
-      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[#1b1c1c] text-[24px] w-full">
-        <p className="leading-[28px]">Juan Carlos Mondaca</p>
-      </div>
-    </div>
-  );
-}
-
-function Container3() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[#a3a3a3] text-[18px] w-full">
-        <p className="leading-[16px]">Gerente</p>
-      </div>
-    </div>
-  );
-}
-
-function Container4() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="capitalize flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[#eea906] text-[18px] w-full">
-        <p className="leading-[30px]">Especialidad: Ingeniería eléctrica e industrial</p>
-      </div>
-    </div>
-  );
-}
-
-function Background() {
-  return (
-    <div className="bg-white relative shrink-0 w-full" data-name="Background">
-      <div className="content-stretch flex flex-col gap-[8px] items-start p-[24px] relative size-full">
-        <Container3 />
-        <Container4 />
-      </div>
-    </div>
-  );
-}
-
-function TechnicalWork() {
-  return (
-    <div className="content-stretch flex flex-col gap-[32px] h-[599px] items-center relative shrink-0 w-[407px]" data-name="Technical Work 3">
-      <div className="h-[348px] relative shrink-0 w-full" data-name="descarga 1">
-        <img alt="" className="absolute inset-0 max-w-none object-contain pointer-events-none size-full" src={imgDescarga1} />
-      </div>
-      <Heading1 />
-      <Background />
-    </div>
-  );
-}
-
-function Heading2() {
-  return (
-    <div className="content-stretch flex flex-col items-start pt-[8px] relative shrink-0 w-full" data-name="Heading 4">
-      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[#1b1c1c] text-[24px] w-full">
-        <p className="leading-[28px]">Belén Espinosa</p>
-      </div>
-    </div>
-  );
-}
-
-function Container5() {
-  return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Container">
-      <div className="capitalize flex flex-col font-['Inter:Bold',sans-serif] font-bold justify-center leading-[0] not-italic relative shrink-0 text-[#eea906] text-[18px] w-full">
-        <p className="leading-[25px]">Especialidad: Instrumentación y control industrial</p>
-      </div>
-    </div>
-  );
-}
-
-function Background1() {
-  return (
-    <div className="bg-white relative shrink-0 w-full" data-name="Background">
-      <div className="content-stretch flex flex-col items-start p-[24px] relative size-full">
-        <Container5 />
-      </div>
-    </div>
-  );
-}
-
-function TechnicalWork1() {
-  return (
-    <div className="content-stretch flex flex-col gap-[32px] h-[599px] items-center relative shrink-0 w-[409px]" data-name="Technical Work 4">
-      <div className="relative shrink-0 size-[344px]" data-name="retrato_2 1">
-        <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgRetrato21} />
-      </div>
-      <Heading2 />
-      <Background1 />
-    </div>
-  );
-}
-
-function Container2() {
-  return (
-    <div className="content-stretch flex gap-[57px] items-start justify-center relative shrink-0 w-[1098px]" data-name="Container">
-      <TechnicalWork />
-      <TechnicalWork1 />
-    </div>
-  );
-}
-
-function Button() {
-  return (
-    <a
-      href={catalogBrochureUrl}
-      download="Catalogo_electric_comp_compressed.pdf"
-      className="bg-[#eea906] content-stretch drop-shadow-[-1px_0px_5.858px_rgba(255,193,47,0.99)] flex gap-[20px] items-center justify-center pb-[17.5px] pt-[16.5px] px-[40px] relative shrink-0 cursor-pointer no-underline transition-[filter,opacity] duration-200 hover:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-      data-name="Button"
+    <article
+      className="group relative overflow-hidden rounded-sm border border-[#d1d1d1] bg-white p-6 md:p-8 shadow-sm transition-all duration-300 hover:border-[#EEA906]/50 hover:shadow-md"
+      data-name="Team card"
     >
-      <div className="h-[25px] relative shrink-0 w-[20px]" data-name="Icon">
-        <svg className="absolute block inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 20 25">
-          <path d={svgPaths.p17359280} fill="var(--fill-0, white)" id="Icon" />
-        </svg>
+      <div
+        className="absolute left-0 top-0 h-full w-1 bg-[#EEA906] opacity-90 transition-all duration-300 group-hover:w-1.5"
+        aria-hidden
+      />
+      <div className="flex flex-col gap-2 pl-2">
+        <h3
+          className="text-[#1b1c1c] text-xl md:text-2xl font-bold tracking-tight"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+        >
+          {name}
+        </h3>
+        {role ? (
+          <p className="text-[#8192a7] text-sm font-semibold uppercase tracking-widest mb-3">
+            {role}
+          </p>
+        ) : null}
+        <p className="text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[#EEA906] mb-2">
+          Especialidad
+        </p>
+        <p className="text-[#44474c] text-sm md:text-base font-medium leading-relaxed">
+          {specialty}
+        </p>
       </div>
-      <div className="flex flex-col font-['Inter:Bold',sans-serif] font-bold h-[20px] justify-center leading-[0] not-italic relative shrink-0 text-[14px] text-center text-white tracking-[1.4px] uppercase w-[194.03px]">
-        <p className="leading-[20px]">descargar brochure</p>
-      </div>
-    </a>
-  );
-}
-
-function Container() {
-  return (
-    <div className="max-w-[1280px] relative shrink-0 w-full" data-name="Container">
-      <div className="flex flex-col items-center max-w-[inherit] size-full">
-        <div className="content-stretch flex flex-col gap-[64px] items-center max-w-[inherit] relative size-full p-[0px]">
-          <Container1 />
-          <Container2 />
-          <Button />
-        </div>
-      </div>
-    </div>
+    </article>
   );
 }
 
 export default function ExperienceSection() {
   return (
-    <div className="bg-[#e6e6e6] content-stretch flex flex-col items-start py-[96px] relative size-full" data-name="Experience Section">
-      <Container />
+    <div
+      className="bg-[#e6e6e6] flex flex-col items-stretch py-16 md:py-24 w-full"
+      data-name="Experience Section"
+    >
+      <div className="max-w-7xl mx-auto w-full px-4 md:px-8">
+        <div className="flex flex-col items-center text-center gap-3 mb-10 md:mb-14">
+          <span className="text-[#EEA906] text-xs tracking-[3px] uppercase font-bold">
+            Nosotros
+          </span>
+          <h2
+            className="text-[#1b1c1c] text-3xl md:text-[2.5rem] font-extrabold tracking-[-1.5px] leading-tight max-w-2xl"
+            style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          >
+            Equipo comprometido
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <div
+            className="relative flex items-center justify-center rounded-sm border border-white/80 bg-white p-4 md:p-6 shadow-[0_8px_40px_rgba(4,22,39,0.08)]"
+            data-name="Illustration column"
+          >
+            <img
+              src={imgEquipo}
+              alt="Ilustración del equipo técnico de Electric Company en trabajo de campo y oficina"
+              className="w-full max-w-lg mx-auto h-auto object-contain select-none"
+            />
+          </div>
+
+          <div
+            className="flex flex-col justify-center gap-5 w-full max-w-xl lg:max-w-none"
+            data-name="Team cards column"
+          >
+            <TeamCard
+              name="Juan Carlos Mondaca"
+              role="Gerente"
+              specialty="Ingeniería eléctrica e industrial"
+            />
+            <TeamCard
+              name="Belén Espinosa"
+              specialty="Instrumentación y control industrial"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

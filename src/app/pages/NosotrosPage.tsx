@@ -143,24 +143,6 @@ function QuienesSomosSection() {
               className="absolute bottom-0 left-0 w-48 h-48 bg-[#EEA906]/80 z-10"
               style={{ clipPath: "polygon(0 100%, 0 30%, 100% 100%)" }}
             />
-            {/* Stats card */}
-            <div className="absolute bottom-8 right-6 z-20 bg-[#041627] text-white px-7 py-5 hidden lg:block">
-              <div
-                className="text-[#EEA906]"
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "2.4rem",
-                  fontWeight: 800,
-                  letterSpacing: "-1.5px",
-                  lineHeight: 1,
-                }}
-              >
-                +10
-              </div>
-              <div className="text-xs text-[#8192a7] tracking-widest uppercase mt-1">
-                Años de experiencia
-              </div>
-            </div>
           </div>
 
           {/* Right: Content */}
@@ -248,188 +230,7 @@ function QuienesSomosSection() {
   );
 }
 
-/* ─── 3. PROPUESTA DE VALOR ─────────────────────────────────────────── */
-function ValorCard({
-  svgPath,
-  svgViewBox,
-  title,
-  desc,
-}: {
-  svgPath: string;
-  svgViewBox: string;
-  title: string;
-  desc: string;
-}) {
-  return (
-    <div className="bg-white border border-[#e6e6e6] flex flex-col gap-5 p-8 relative group hover:border-[#EEA906]/50 transition-colors duration-200">
-      {/* Yellow left accent line */}
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#EEA906] opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-
-      {/* Icon */}
-      <div className="h-9 w-9 flex-shrink-0">
-        <svg fill="none" viewBox={svgViewBox} className="h-9 w-auto">
-          <path d={svgPath} fill="#EEA906" />
-        </svg>
-      </div>
-
-      {/* Title */}
-      <h3
-        className="text-[#1b1c1c] uppercase"
-        style={{
-          fontFamily: "'Inter', sans-serif",
-          fontSize: "0.75rem",
-          fontWeight: 700,
-          letterSpacing: "2.4px",
-        }}
-      >
-        {title}
-      </h3>
-
-      {/* Desc */}
-      <p
-        className="text-[#44474c] text-sm leading-relaxed"
-        style={{ fontFamily: "'Inter', sans-serif" }}
-      >
-        {desc}
-      </p>
-    </div>
-  );
-}
-
-function PropuestaDeValor() {
-  const cards = [
-    {
-      svgPath: svgPaths.p2256d300,
-      svgViewBox: "0 0 20 25",
-      title: "Seguridad",
-      desc: "Rigor técnico y cumplimiento normativo absoluto en cada conexión. Todos nuestros trabajos cumplen con la normativa SEC vigente.",
-    },
-    {
-      svgPath: svgPaths.p3c3be360,
-      svgViewBox: "0 0 25 20",
-      title: "Calidad",
-      desc: "Componentes de clase mundial e integración de alta ingeniería. Usamos materiales certificados y proveedores de primer nivel.",
-    },
-    {
-      svgPath: svgPaths.p17359280,
-      svgViewBox: "0 0 20 25",
-      title: "Eficiencia",
-      desc: "Optimización del consumo y reducción drástica de tiempos muertos. Nuestros proyectos entregan resultados medibles desde el día uno.",
-    },
-    {
-      svgPath: svgPaths.p39cda500,
-      svgViewBox: "0 0 25.002 20",
-      title: "Rápida respuesta",
-      desc: "Soporte técnico local en Antofagasta con tiempos de respuesta críticos. Disponibles 24 horas para emergencias eléctricas industriales.",
-    },
-  ];
-
-  return (
-    <section className="bg-[#e6e6e6] py-20 px-6 md:px-10">
-      <div className="max-w-[1280px] mx-auto">
-        {/* Header */}
-        <div className="mb-12 flex flex-col gap-4">
-          <span
-            className="text-[#EEA906] text-xs tracking-[3.6px] uppercase"
-            style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
-          >
-            Nuestra propuesta de valor
-          </span>
-          <div>
-            <p
-              className="text-[#1a1a1a] leading-tight mb-0"
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: "clamp(1.8rem, 3.2vw, 3rem)",
-                fontWeight: 700,
-                letterSpacing: "-1.5px",
-              }}
-            >
-              Por qué confiar en
-            </p>
-            <p
-              className="text-[#EEA906] leading-tight"
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontSize: "clamp(1.8rem, 3.2vw, 3rem)",
-                fontWeight: 700,
-                letterSpacing: "-1.5px",
-              }}
-            >
-              Electric Company SpA
-            </p>
-          </div>
-        </div>
-
-        {/* Cards grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-0 md:gap-6">
-          {cards.map((card) => (
-            <ValorCard key={card.title} {...card} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── 4. ESTADÍSTICAS ───────────────────────────────────────────────── */
-function EstadisticasSection() {
-  const stats = [
-    { number: "+10", label: "Años de experiencia", sub: "En la industria eléctrica del norte" },
-    { number: "+80", label: "Proyectos ejecutados", sub: "En minería, energía e industria" },
-    { number: "+40", label: "Clientes activos", sub: "Empresas de primer nivel" },
-    { number: "4", label: "Certificaciones", sub: "SEC, ISO 9001, OHSAS 18001, Nch" },
-  ];
-
-  return (
-    <section className="bg-[#041627] py-16 px-6 md:px-10 relative overflow-hidden">
-      {/* Decorative */}
-      <div className="absolute inset-y-0 right-0 w-[40%] pointer-events-none opacity-[0.03]">
-        <svg viewBox="0 0 200 400" className="h-full w-auto ml-auto" fill="#EEA906">
-          <polygon points="120,0 50,200 110,200 80,400 170,150 110,150 150,0" />
-        </svg>
-      </div>
-
-      <div className="max-w-[1280px] mx-auto relative z-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="bg-[#041627] flex flex-col gap-2 px-8 py-10"
-            >
-              <span
-                className="text-[#EEA906]"
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "clamp(2rem, 4vw, 3.5rem)",
-                  fontWeight: 800,
-                  letterSpacing: "-2px",
-                  lineHeight: 1,
-                }}
-              >
-                {stat.number}
-              </span>
-              <span
-                className="text-white text-xs tracking-[2px] uppercase"
-                style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
-              >
-                {stat.label}
-              </span>
-              <span
-                className="text-[#8192a7] text-xs leading-relaxed"
-                style={{ fontFamily: "'Inter', sans-serif" }}
-              >
-                {stat.sub}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── 5. MISIÓN / VISIÓN ────────────────────────────────────────────── */
+/* ─── 3. MISIÓN / VISIÓN ────────────────────────────────────────────── */
 function MisionVisionSection() {
   return (
     <section className="bg-white overflow-hidden border-t border-gray-100">
@@ -590,7 +391,7 @@ function MisionVisionSection() {
   );
 }
 
-/* ─── 6. CERTIFICACIONES Y PROYECTOS ────────────────────────────────── */
+/* ─── 4. CERTIFICACIONES Y PROYECTOS ────────────────────────────────── */
 function CertificacionesSection() {
   const certs = [
     {
@@ -705,7 +506,7 @@ function CertificacionesSection() {
   );
 }
 
-/* ─── 7. PROYECTOS DESTACADOS ──────────────────────────────────────── */
+/* ─── 5. PROYECTOS DESTACADOS ──────────────────────────────────────── */
 function ProyectosDestacados() {
   const projects = [
     {
@@ -860,7 +661,7 @@ function ProyectosDestacados() {
   );
 }
 
-/* ─── 8. CTA BANNER ────────────────────────────────────────────────── */
+/* ─── 6. CTA BANNER ────────────────────────────────────────────────── */
 function CtaBanner() {
   return (
     <section
@@ -926,8 +727,6 @@ export function NosotrosPage() {
     <>
       <NosotrosHero />
       <QuienesSomosSection />
-      <PropuestaDeValor />
-      <EstadisticasSection />
       <MisionVisionSection />
       <ExperienceSection />
       <CtaBanner />
