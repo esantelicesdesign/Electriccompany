@@ -16,7 +16,8 @@ function CatalogParallaxBanner({ catalogPdf: pdfUrl }: { catalogPdf: string }) {
   });
 
   const bgY = useTransform(scrollYProgress, [0, 1], ["10%", "-14%"]);
-  const bgScale = useTransform(scrollYProgress, [0, 0.45, 1], [1.12, 1.22, 1.1]);
+  /** Zoom ~20% menor para que el mockup del catálogo sea más legible */
+  const bgScale = useTransform(scrollYProgress, [0, 0.45, 1], [0.896, 0.976, 0.88]);
   const bgPosY = useTransform(scrollYProgress, [0, 1], [44, 56]);
   const bgPosition = useTransform(bgPosY, (v) => `50% ${v}%`);
 
@@ -27,7 +28,7 @@ function CatalogParallaxBanner({ catalogPdf: pdfUrl }: { catalogPdf: string }) {
   return (
     <div
       ref={bannerRef}
-      className="relative z-10 mt-auto w-full h-[239px] shrink-0 border-t border-white/15 overflow-hidden"
+      className="relative z-10 mt-auto w-full h-[311px] shrink-0 border-t border-white/15 overflow-hidden"
     >
       <div className="relative h-full w-full">
         <motion.div
@@ -183,7 +184,7 @@ export function Hero() {
       <CatalogParallaxBanner catalogPdf={catalogPdf} />
 
       {/* Scroll indicator */}
-      <div className="absolute hidden md:flex bottom-[252px] left-1/2 -translate-x-1/2 z-10 text-white/40 animate-bounce">
+      <div className="absolute hidden md:flex bottom-[324px] left-1/2 -translate-x-1/2 z-10 text-white/40 animate-bounce">
         <ChevronDown className="w-6 h-6" />
       </div>
     </section>

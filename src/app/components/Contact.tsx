@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Zap, Phone, Mail, MapPin, Send, MessageCircle } from "lucide-react";
 
+const CONTACT_FORM_EMAIL = "contacto@electricompany.cl";
+
 export function Contact() {
   const [form, setForm] = useState({
     name: "",
@@ -8,7 +10,8 @@ export function Contact() {
     phone: "",
     message: "",
   });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [statusMsg, setStatusMsg] = useState("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -16,11 +19,40 @@ export function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
-    setForm({ name: "", email: "", phone: "", message: "" });
+    setStatus("sending");
+    setStatusMsg("");
+    try {
+      const res = await fetch(
+        `https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_FORM_EMAIL)}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            _subject: "Solicitud de cotización — formulario web Electric Company",
+            _replyto: form.email,
+            nombre: form.name,
+            email: form.email,
+            telefono: form.phone || "No indicado",
+            mensaje: form.message,
+            _template: "table",
+            _captcha: "false",
+          }),
+        }
+      );
+      const data = (await res.json()) as { success?: boolean | string; message?: string };
+      const ok =
+        res.ok &&
+        (data.success === true || data.success === "true" || data.success === "True");
+      if (!ok) throw new Error(data.message || "Error al enviar");
+      setStatus("success");
+      setStatusMsg("¡Mensaje enviado! Nos comunicaremos a la brevedad.");
+      setForm({ name: "", email: "", phone: "", message: "" });
+    } catch {
+      setStatus("error");
+      setStatusMsg("No pudimos enviar el formulario. Intenta de nuevo o escríbenos por WhatsApp.");
+    }
   };
 
   return (
@@ -133,7 +165,7 @@ export function Contact() {
 
           {/* Form */}
           <div>
-            {sent ? (
+            {status === "success" ? (
               <div className="h-full flex flex-col items-center justify-center gap-4 bg-[#f8f9fa] border border-[#e6e6e6] p-12 text-center">
                 <div className="w-16 h-16 bg-[#EEA906] flex items-center justify-center">
                   <Send className="w-8 h-8 text-white" />
@@ -219,11 +251,17 @@ export function Contact() {
 
                 <button
                   type="submit"
-                  className="flex items-center justify-center gap-2 bg-[#EEA906] text-white px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-[#d4960a] transition-colors duration-200 mt-2 shadow-[0_2px_12px_rgba(238,169,6,0.4)]"
+                  disabled={status === "sending"}
+                  className="flex items-center justify-center gap-2 bg-[#EEA906] text-white px-8 py-4 text-sm tracking-widest uppercase font-bold hover:bg-[#d4960a] transition-colors duration-200 mt-2 shadow-[0_2px_12px_rgba(238,169,6,0.4)] disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
-                  Enviar solicitud
+                  {status === "sending" ? "Enviando…" : "Enviar solicitud"}
                 </button>
+                {statusMsg && (
+                  <p className={`text-sm ${status === "error" ? "text-[#b91c1c]" : "text-[#166534]"}`}>
+                    {statusMsg}
+                  </p>
+                )}
               </form>
             )}
           </div>

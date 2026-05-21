@@ -5,7 +5,7 @@ import svgPaths from "../../imports/Contactanos-1/svg-0a6ile8q3c";
 /* ─── HERO SECTION ──────────────────────────────────────────────────── */
 function ContactoHero() {
   return (
-    <section className="bg-[#041627] py-32 px-6 md:px-10 relative overflow-hidden">
+    <section className="bg-[#041627] pt-48 pb-32 px-6 md:px-10 relative overflow-hidden">
       {/* Decorative bolt */}
       <div className="absolute right-16 inset-y-0 flex items-center opacity-5 pointer-events-none">
         <svg viewBox="0 0 200 400" className="h-64 text-[#EEA906]" fill="currentColor">
@@ -48,6 +48,8 @@ function ContactoMain() {
   const [formData, setFormData] = useState({
     nombre: "",
     empresa: "",
+    email: "",
+    telefono: "",
     mensaje: "",
   });
   const [submitStatus, setSubmitStatus] = useState<"idle" | "sending" | "success" | "error">(
@@ -71,11 +73,14 @@ function ContactoMain() {
           },
           body: JSON.stringify({
             _subject: "Solicitud de cotización — formulario web Electric Company",
+            _replyto: formData.email,
             nombre: formData.nombre,
             empresa: formData.empresa,
+            email: formData.email,
+            telefono: formData.telefono || "No indicado",
             mensaje: formData.mensaje,
             _template: "table",
-            _captcha: false,
+            _captcha: "false",
           }),
         },
       );
@@ -90,7 +95,7 @@ function ContactoMain() {
       setSubmitMessage(
         "Tu mensaje fue enviado. Revisaremos tu solicitud y te contactaremos pronto.",
       );
-      setFormData({ nombre: "", empresa: "", mensaje: "" });
+      setFormData({ nombre: "", empresa: "", email: "", telefono: "", mensaje: "" });
     } catch {
       setSubmitStatus("error");
       setSubmitMessage(
@@ -244,6 +249,49 @@ function ContactoMain() {
                   onChange={handleChange}
                   placeholder="Nombre de tu empresa"
                   required
+                  className="bg-white border-b-2 border-[rgba(196,198,205,0.3)] px-0 py-3 text-sm text-[#1b1c1c] placeholder:text-[#6b7280] focus:outline-none focus:border-[#EEA906] transition-colors"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                />
+              </div>
+
+              {/* Email */}
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="email"
+                  className="text-[#5f5e5e] text-[10px] tracking-widest uppercase"
+                  style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
+                >
+                  Correo electrónico
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="tucorreo@empresa.cl"
+                  required
+                  className="bg-white border-b-2 border-[rgba(196,198,205,0.3)] px-0 py-3 text-sm text-[#1b1c1c] placeholder:text-[#6b7280] focus:outline-none focus:border-[#EEA906] transition-colors"
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                />
+              </div>
+
+              {/* Phone */}
+              <div className="flex flex-col gap-2">
+                <label
+                  htmlFor="telefono"
+                  className="text-[#5f5e5e] text-[10px] tracking-widest uppercase"
+                  style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700 }}
+                >
+                  Teléfono <span className="normal-case font-normal">(opcional)</span>
+                </label>
+                <input
+                  type="tel"
+                  id="telefono"
+                  name="telefono"
+                  value={formData.telefono}
+                  onChange={handleChange}
+                  placeholder="+56 9 XXXX XXXX"
                   className="bg-white border-b-2 border-[rgba(196,198,205,0.3)] px-0 py-3 text-sm text-[#1b1c1c] placeholder:text-[#6b7280] focus:outline-none focus:border-[#EEA906] transition-colors"
                   style={{ fontFamily: "'Inter', sans-serif" }}
                 />
